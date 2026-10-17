@@ -251,6 +251,7 @@ clearDataButton.addEventListener('click', () => {
         localStorage.removeItem('show-hidden-locations');
         localStorage.removeItem('show-last-listener');
         localStorage.removeItem('show-caves');
+        localStorage.removeItem('visible-marker-types');
         localStorage.removeItem('show-primary-numbers');
         localStorage.removeItem('show-visit-overlays');
         localStorage.removeItem('use-solid-background');
