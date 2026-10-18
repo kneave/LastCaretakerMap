@@ -161,7 +161,9 @@ export const caves = locationData.caves;
 // Load visibility state from localStorage
 function getVisibilityState(locationId) {
     const state = localStorage.getItem(`marker-visible-${locationId}`);
-    return state === null ? true : state === 'true';
+    if (state !== null) return state === 'true';
+    const location = Object.values(locationData).flat().find(location => location.id === locationId);
+    return location?.visibleByDefault !== false;
 }
 
 // Save visibility state to localStorage
@@ -460,15 +462,17 @@ export function refreshDisplay() {
     // Apply visit overlay visibility setting
     applyVisitOverlayVisibility();
 
-    // Fit map to show all visible markers
+    // Fit map to show the central markers
     const visibleLocations = [locations];
     if (showHidden) visibleLocations.push(hiddenLocations);
     if (showLastListener) visibleLocations.push(lastListenerLocations);
     if (showCaves) visibleLocations.push(caves);
     
-    const allLocations = visibleLocations.flat();
-    if (allLocations.length > 0) {
-        const bounds = L.latLngBounds(allLocations.map(loc => [-loc.latitude, loc.longitude]));
+    const centralLocations = visibleLocations.flat().filter(location =>
+        location.gameid !== 'ArchSnowBiome' && location.gameid !== 'NorthBastion'
+    );
+    if (centralLocations.length > 0) {
+        const bounds = L.latLngBounds(centralLocations.map(loc => [-loc.latitude, loc.longitude]));
         map.fitBounds(bounds, { padding: [50, 50] });
     }
 }
@@ -765,7 +769,7 @@ function createLocationItem(location) {
     });
     
     // Update button appearance
-    updateToggleButton(location.id, isVisible);
+    toggleButton.dataset.visible = isVisible;
     
     return locationItem;
 }

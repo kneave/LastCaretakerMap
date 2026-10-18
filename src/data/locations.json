@@ -563,10 +563,10 @@
               "name":  "SGS-SW-72-6800",
               "id":  "52E",
               "description":  "A platform for the Gyrocopter. 3x Archangel",
-              "longitude": 13,
-              "latitude": 32,
+              "longitude":  13,
+              "latitude":  32,
               "type":  "GyroPlatform",
-              "gameid": "GyrocopyterPlatformH2"
+              "gameid":  "GyrocopyterPlatformH2"
             },
             {
               "name":  "MCV-17 Dead Breath",
@@ -603,6 +603,35 @@
               "latitude":  -2,
               "type":  "Eden",
               "gameid":  "EdenPishon"
+            },
+            {
+              "name":  "North Bastion Transfer Gate",
+              "id":  "57",
+              "description":  "Teleportation gate for the North Bastion.",
+              "longitude":  54,
+              "latitude":  -1012,
+              "type":  "Portal",
+              "gameid":  "ArchSnowBiome"
+            },
+            {
+              "name":  "North Bastion",
+              "id":  "58",
+              "description":  "The North Bastion is a far off research base located in the northern part of the world. You cannot reach it by sea as the ice and freezing starts 37.5km out.",
+              "longitude":  55,
+              "latitude":  -1020,
+              "type":  "RockySpire",
+              "secondaryNumbers": "120-04",
+              "gameid":  "NorthBastion"
+            },
+            {
+              "name":  "Lazarus Complex Transfer Gate",
+              "id":  "59",
+              "visibleByDefault":  false,
+              "description":  "Teleportation gate for the Lazarus Complex.",
+              "longitude":  70,
+              "latitude":  -2,
+              "type":  "Portal",
+              "gameid":  "Lazarus"
             }
           ],
   "hiddenLocations":  [
