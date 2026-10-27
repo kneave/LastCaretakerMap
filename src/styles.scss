@@ -561,6 +561,108 @@ header p {
     display: none !important;
 }
 
+/* Sample count badge on map markers */
+.sample-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+    pointer-events: none;
+    background: #ffd700;
+    color: #000;
+    border: 1px solid #6b5b00;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: 'ui-monospace', monospace;
+    line-height: 1;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+
+    /* Sample-site markers (open water / unmarked spires) use the same look */
+    &.sample-badge-site {
+        top: -7px;
+        right: -9px;
+    }
+}
+
+.number-marker .sample-badge {
+    top: -4px;
+    right: -6px;
+}
+
+/* Sample count chip in sidebar rows */
+.sample-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 14px;
+    padding: 0 4px;
+    margin-left: 6px;
+    background: #ffd700;
+    color: #000;
+    border: 1px solid #6b5b00;
+    border-radius: 7px;
+    font-size: 9px;
+    font-weight: bold;
+    font-family: 'ui-monospace', monospace;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+/* Sample list within popups */
+.popup-samples {
+    margin: 10px 0;
+    border-top: 1px solid #ddd;
+    padding-top: 8px;
+}
+
+.popup-samples-header {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.popup-samples-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+.popup-samples-list .sample-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px dotted #e5e5e5;
+    font-size: 12px;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.popup-samples-list .sample-id {
+    flex: 0 0 auto;
+    min-width: 30px;
+    font-family: 'ui-monospace', monospace;
+    font-weight: bold;
+    color: #8a6d00;
+}
+
+.popup-samples-list .sample-name {
+    color: #333;
+}
+
 /* Marker label styles */
 .marker-label {
     background: transparent;

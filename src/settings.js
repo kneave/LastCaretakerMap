@@ -34,7 +34,8 @@ const defaultMarkerColors = {
     Silo: '#ff9900',
     "StatueSpire": '#CCCCCC',
     "Eden": '#ffffff',
-    "Lab": '#4eaad4'
+    "Lab": '#4eaad4',
+    "Sample": '#FFD700'
 };
 
 // Friendly display names for types
@@ -57,7 +58,8 @@ const typeDisplayNames = {
     StarChild: 'Star Child',
     RollerFactory: 'Roller Factory',
     GyroPlatform: 'Gyro Platform',
-    Silo: 'Silo'
+    Silo: 'Silo',
+    Sample: 'Samples'
 };
 
 // Get the marker color for a given type, checking user overrides first
@@ -78,6 +80,7 @@ const showLastListenerCheckbox = document.getElementById('show-last-listener');
 const showCavesCheckbox = document.getElementById('show-caves');
 const showPrimaryNumbersCheckbox = document.getElementById('show-primary-numbers');
 const showVisitOverlaysCheckbox = document.getElementById('show-visit-overlays');
+const showSamplesOnlyCheckbox = document.getElementById('show-samples-only');
 const useSolidBackgroundCheckbox = document.getElementById('use-solid-background');
 const backgroundColorPicker = document.getElementById('background-color');
 const showClothMapCheckbox = document.getElementById('show-cloth-map');
@@ -254,6 +257,7 @@ clearDataButton.addEventListener('click', () => {
         localStorage.removeItem('visible-marker-types');
         localStorage.removeItem('show-primary-numbers');
         localStorage.removeItem('show-visit-overlays');
+        localStorage.removeItem('show-samples-only');
         localStorage.removeItem('use-solid-background');
         localStorage.removeItem('background-color');
         localStorage.removeItem('show-cloth-map');
@@ -280,6 +284,7 @@ function loadSettingsState() {
     const showCaves = localStorage.getItem('show-caves') !== 'false';
     const showPrimaryNumbers = localStorage.getItem('show-primary-numbers') === 'true';
     const showVisitOverlays = localStorage.getItem('show-visit-overlays') !== 'false';
+    const showSamplesOnly = localStorage.getItem('show-samples-only') === 'true';
     const useSolidBackground = localStorage.getItem('use-solid-background') === 'true';
     const backgroundColor = localStorage.getItem('background-color') || '#17531b';
     const showClothMap = localStorage.getItem('show-cloth-map') === 'true';
@@ -289,6 +294,7 @@ function loadSettingsState() {
     showCavesCheckbox.checked = showCaves;
     showPrimaryNumbersCheckbox.checked = showPrimaryNumbers;
     showVisitOverlaysCheckbox.checked = showVisitOverlays;
+    showSamplesOnlyCheckbox.checked = showSamplesOnly;
     useSolidBackgroundCheckbox.checked = useSolidBackground;
     backgroundColorPicker.value = backgroundColor;
     showClothMapCheckbox.checked = showClothMap;
@@ -304,6 +310,7 @@ function saveSettingsState() {
     localStorage.setItem('show-caves', showCavesCheckbox.checked);
     localStorage.setItem('show-primary-numbers', showPrimaryNumbersCheckbox.checked);
     localStorage.setItem('show-visit-overlays', showVisitOverlaysCheckbox.checked);
+    localStorage.setItem('show-samples-only', showSamplesOnlyCheckbox.checked);
     localStorage.setItem('use-solid-background', useSolidBackgroundCheckbox.checked);
     localStorage.setItem('background-color', backgroundColorPicker.value);
     localStorage.setItem('show-cloth-map', showClothMapCheckbox.checked);
@@ -342,6 +349,13 @@ showVisitOverlaysCheckbox.addEventListener('change', () => {
     saveSettingsState();
     applyVisitOverlayVisibility();
     gtag('event', 'settings_toggle', { setting: 'show_visit_overlays', value: showVisitOverlaysCheckbox.checked });
+});
+
+// Handle show samples only toggle
+showSamplesOnlyCheckbox.addEventListener('change', () => {
+    saveSettingsState();
+    refreshDisplay();
+    gtag('event', 'settings_toggle', { setting: 'show_samples_only', value: showSamplesOnlyCheckbox.checked });
 });
 
 // Handle use solid background toggle
@@ -456,6 +470,7 @@ if (exportDataButton) {
             dataToExport['show-caves'] = localStorage.getItem('show-caves');
             dataToExport['show-primary-numbers'] = localStorage.getItem('show-primary-numbers');
             dataToExport['show-visit-overlays'] = localStorage.getItem('show-visit-overlays');
+            dataToExport['show-samples-only'] = localStorage.getItem('show-samples-only');
             dataToExport['use-solid-background'] = localStorage.getItem('use-solid-background');
             dataToExport['background-color'] = localStorage.getItem('background-color');
             dataToExport['show-cloth-map'] = localStorage.getItem('show-cloth-map');

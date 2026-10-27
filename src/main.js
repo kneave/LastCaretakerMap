@@ -6,6 +6,10 @@ import { getMarkerColor } from './settings.js'
 
 import locationData from './data/locations.json';
 import locationTypes from './data/types.json';
+import sampleData from './data/samples.json';
+
+// Quick lookup: sample id -> sample entry
+const sampleIndex = Object.fromEntries(sampleData.samples.map(s => [s.id, s]));
 
 // Initialize the map
 const map = L.map('map', {
@@ -157,6 +161,50 @@ export const locations = locationData.locations;
 export const hiddenLocations = locationData.hiddenLocations;
 export const lastListenerLocations = locationData.lastListenerLocations;
 export const caves = locationData.caves;
+
+// All location arrays flattened, for id lookups
+const allLocations = [...locations, ...hiddenLocations, ...lastListenerLocations, ...caves];
+
+// True when only locations holding samples should be shown
+export function getSamplesOnlyState() {
+    return localStorage.getItem('show-samples-only') === 'true';
+}
+
+// A location participates in samples-only filtering if it is a Sample site
+// or carries sampleIds
+function hasSamples(location) {
+    return location.type === 'Sample' || (Array.isArray(location.sampleIds) && location.sampleIds.length > 0);
+}
+
+// Sample list for the location popup, grouped by category
+function buildSampleListHtml(location) {
+    const ids = location.sampleIds || [];
+    if (!ids.length) return '';
+    const rows = ids.map(id => {
+        const s = sampleIndex[id];
+        if (!s) return '';
+        return `
+            <li class="sample-row" data-sample-id="${id}">
+                <span class="sample-id">${id}</span>
+                <span class="sample-name">${s.name}</span>
+            </li>
+        `;
+    }).join('');
+    return `
+        <div class="popup-samples">
+            <div class="popup-samples-header">Samples (${ids.length})</div>
+            <ul class="popup-samples-list">${rows}</ul>
+        </div>
+    `;
+}
+
+// Small count chip shown in sidebar rows for locations that have samples
+function sampleChipHtml(location) {
+    const count = (location.sampleIds || []).length;
+    if (!count) return '';
+    const cls = location.type === 'Sample' ? 'sample-chip sample-chip-site' : 'sample-chip';
+    return `<span class="${cls}" title="${count} sample${count > 1 ? 's' : ''} to find">${count}</span>`;
+}
 
 // Load visibility state from localStorage
 function getVisibilityState(locationId) {
@@ -338,7 +386,16 @@ const iconCache = {};
 function clearIconCache() {
     Object.keys(iconCache).forEach(key => delete iconCache[key]);
 }
-function createCustomIcon(locationType, locationCategory = 'regular') {
+
+// Small count badge shown on markers for locations that have samples
+function sampleBadgeHtml(location) {
+    const count = (location.sampleIds || []).length;
+    if (!count) return '';
+    const cls = location.type === 'Sample' ? ' sample-badge sample-badge-site' : 'sample-badge';
+    return `<div class="${cls}" title="${count} sample${count > 1 ? 's' : ''}">${count}</div>`;
+}
+
+function createCustomIcon(locationType, locationCategory = 'regular', location = null) {
     const color = getMarkerColor(locationType);
     const cacheKey = `${locationCategory}_${color}`;
     iconCache[locationType] = iconCache[locationType] || {};
@@ -349,9 +406,10 @@ function createCustomIcon(locationType, locationCategory = 'regular') {
     const extraClass = locationCategory === 'lastListener' ? ' marker-icon-last-listener' : '';
     const isBlack = color.toLowerCase() === '#000000' || color.toLowerCase() === 'black';
     const outlineClass = isBlack ? ' no-outline' : '';
+    const badge = location ? sampleBadgeHtml(location) : '';
     const icon = L.divIcon({
         className: `colored-marker-icon${extraClass}${outlineClass}`,
-        html: `<div class="marker-icon-inner" style="background-color: ${color}; -webkit-mask-image: url('./images/${locationTypes[locationType]}'); mask-image: url('./images/${locationTypes[locationType]}');"></div><div class="visit-overlay" data-state="not-visited"></div>`,
+        html: `<div class="marker-icon-inner" style="background-color: ${color}; -webkit-mask-image: url('./images/${locationTypes[locationType]}'); mask-image: url('./images/${locationTypes[locationType]}');"></div>${badge}<div class="visit-overlay" data-state="not-visited"></div>`,
         iconSize: [32, 32],
         iconAnchor: [16, 32],
         popupAnchor: [0, -50]
@@ -410,8 +468,11 @@ function setupSearch() {
 }
 
 // Filter locations based on search query
-function filterLocations(locations) {
-    const typeFilteredLocations = filterLocationsByType(locations);
+function filterLocations(locationsList) {
+    let typeFilteredLocations = filterLocationsByType(locationsList);
+    if (getSamplesOnlyState()) {
+        typeFilteredLocations = typeFilteredLocations.filter(hasSamples);
+    }
     if (!searchQuery) return typeFilteredLocations;
     return typeFilteredLocations.filter(location => {
         const nameMatch = location.name.toLowerCase().includes(searchQuery);
@@ -419,7 +480,12 @@ function filterLocations(locations) {
             return nameMatch;
         }
         const descriptionMatch = location.description && location.description.toLowerCase().includes(searchQuery);
-        return nameMatch || descriptionMatch;
+        // When searching all text, also match against the location's sample notes
+        const sampleMatch = (location.sampleIds || []).some(id =>
+            (sampleIndex[id]?.note || '').toLowerCase().includes(searchQuery) ||
+            (sampleIndex[id]?.name || '').toLowerCase().includes(searchQuery)
+        );
+        return nameMatch || descriptionMatch || sampleMatch;
     });
 }
 
@@ -496,6 +562,7 @@ function addMarkersToMap(locations, locationCategory = 'regular') {
                     <div class="number-marker">
                         <div class="marker-icon-inner" style="background-color: ${iconColor}; -webkit-mask-image: url('./images/${locationTypes[location.type]}'); mask-image: url('./images/${locationTypes[location.type]}');"></div>
                         <span class="number-marker-number">${primaryNumber}</span>
+                        ${sampleBadgeHtml(location)}
                         <div class="visit-overlay" data-state="not-visited"></div>
                     </div>
                 `,
@@ -503,7 +570,7 @@ function addMarkersToMap(locations, locationCategory = 'regular') {
                 iconAnchor: [16, 32],
                 popupAnchor: [0, -50]
             })
-            : createCustomIcon(location.type, locationCategory);
+            : createCustomIcon(location.type, locationCategory, location);
         
         const marker = L.marker([-location.latitude, location.longitude], {
             icon: markerIcon
@@ -565,6 +632,7 @@ function addMarkersToMap(locations, locationCategory = 'regular') {
                     ${primaryNum ? `<p><strong>Primary #:</strong> ${primaryNum}</p>` : ''}
                     ${secondaryNum ? `<p><strong>Secondary #:</strong> ${secondaryNum}</p>` : ''}
                     <p><strong>Coordinates:</strong> ${location.longitude} : ${location.latitude}</p>
+                    ${buildSampleListHtml(location)}
                     <button class="visit-status-btn" data-location-id="${location.id}" data-state="${state}">
                         <span class="visit-icon">${VISIT_ICONS[state]}</span>
                         <span class="visit-text">${VISIT_LABELS[state]}</span>
@@ -740,6 +808,7 @@ function createLocationItem(location) {
         <span class="sidebar-visit-icon" id="sidebar-visit-${location.id}" data-state="${visitState}"></span>
         <div class="location-header">
             <h3>${location.name}</h3>
+            ${sampleChipHtml(location)}
             <button class="toggle-visibility" id="toggle-${location.id}" title="Toggle visibility"></button>
         </div>
         <!--<p>${location.description}</p>-->

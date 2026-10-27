@@ -16,6 +16,7 @@
               "longitude":  24,
               "latitude":  4,
               "type":  "Habitat",
+              "sampleIds":  ["024", "035", "043", "130"],
               "gameid":  "HabitatNode06"
             },
             {
@@ -37,6 +38,7 @@
               "type":  "Lazarus",
               "radarRadius":  31,
               "secondaryNumbers":  "6,7,21,22,23,24,51,52,53,54",
+              "sampleIds":  ["125"],
               "gameid":  "LazarusComplex"
             },
             {
@@ -46,6 +48,7 @@
               "longitude":  60,
               "latitude":  -41,
               "type":  "Ruin",
+              "sampleIds":  ["105", "106", "107", "108"],
               "gameid":  "NorfolkGrave"
             },
             {
@@ -65,6 +68,7 @@
               "longitude":  82,
               "latitude":  -65,
               "type":  "SeedVault",
+              "sampleIds":  ["050"],
               "gameid":  "SeedVaultA"
             },
             {
@@ -84,6 +88,7 @@
               "latitude":  -6,
               "type":  "RefuelOutpost",
               "primaryNumbers":  "19",
+              "sampleIds":  ["127"],
               "gameid":  "RefuelOutpostA"
             },
             {
@@ -94,6 +99,7 @@
               "latitude":  -70,
               "type":  "OilRig",
               "flags":  "exo",
+              "sampleIds":  ["013", "014", "015", "123"],
               "gameid":  "BlackVeinStation"
             },
             {
@@ -103,6 +109,7 @@
               "longitude":  103,
               "latitude":  19,
               "type":  "Ruin",
+              "sampleIds":  ["094", "114", "116", "117"],
               "gameid":  "HamptonGrave"
             },
             {
@@ -114,6 +121,7 @@
               "type":  "Rocket",
               "primaryNumbers":  "2",
               "secondaryNumbers":  "8,32,24-9",
+              "sampleIds":  ["001", "002", "003", "004", "118", "119", "120", "121", "122"],
               "gameid":  "ExodusStation"
             },
             {
@@ -133,6 +141,7 @@
               "longitude":  98,
               "latitude":  15,
               "type":  "Habitat",
+              "sampleIds":  ["020", "022", "025"],
               "gameid":  "HabitatNode03"
             },
             {
@@ -143,6 +152,7 @@
               "latitude":  16,
               "type":  "Habitat",
               "underwaterLoot":  true,
+              "sampleIds":  ["036", "037", "038"],
               "gameid":  "HabitatNode09"
             },
             {
@@ -152,15 +162,17 @@
               "longitude":  131,
               "latitude":  21,
               "type":  "Habitat",
+              "sampleIds":  ["021", "031", "032"],
               "gameid":  "HabitatNode08"
             },
             {
-              "name":  "Habitat Node 21-7",
+              "name":  "Habitat Node 14-7",
               "id":  "16",
               "description":  "Habitat Node 21-7 is a habitat platform.",
               "longitude":  105,
               "latitude":  50,
               "type":  "Habitat",
+              "sampleIds":  ["034", "041", "042"],
               "gameid":  "HabitatNode14",
               "secondaryNumbers":  "0,02,04,05,07,10,17"
             },
@@ -194,6 +206,7 @@
               "latitude":  -57,
               "type":  "Habitat",
               "underwaterLoot":  true,
+              "sampleIds":  ["023", "040", "044"],
               "gameid":  "HabitatNode-05-14.5"
             },
             {
@@ -204,6 +217,7 @@
               "latitude":  23,
               "type":  "Hanger",
               "primaryNumbers":  "9",
+              "sampleIds":  ["128"],
               "gameid":  "DepotA"
             },
             {
@@ -225,6 +239,7 @@
               "longitude":  109,
               "latitude":  55,
               "type":  "Ruin",
+              "sampleIds":  ["096", "109", "110", "111"],
               "gameid":  "SalemGrave"
             },
             {
@@ -235,6 +250,7 @@
               "latitude":  29,
               "type":  "HeliosReserve",
               "primaryNumbers":  "24",
+              "sampleIds":  ["129"],
               "gameid":  "HeliosReserve24"
             },
             {
@@ -244,6 +260,7 @@
               "longitude":  137,
               "latitude":  35,
               "type":  "Ruin",
+              "sampleIds":  ["095", "097", "098", "099", "112"],
               "gameid":  "DoverGrave"
             },
             {
@@ -265,6 +282,7 @@
               "longitude":  81,
               "latitude":  4,
               "type":  "Ruin",
+              "sampleIds":  ["090", "091", "092", "093"],
               "gameid":  "LincolnGrave"
             },
             {
@@ -283,6 +301,7 @@
               "longitude":  28,
               "latitude":  -12,
               "type":  "Ruin",
+              "sampleIds":  ["088", "089", "104", "115"],
               "gameid":  "WinstonGrave"
             },
             {
@@ -292,6 +311,7 @@
               "longitude":  58,
               "latitude":  -14,
               "type":  "Ruin",
+              "sampleIds":  ["085", "086", "087", "113"],
               "gameid":  "BrightonGrave"
             },
             {
@@ -303,6 +323,7 @@
               "type":  "Habitat",
               "flags":  "fahrt",
               "underwaterLoot":  true,
+              "sampleIds":  ["019", "026", "033", "132"],
               "gameid":  "HabitatNode04"
             },
             {
@@ -312,6 +333,7 @@
               "longitude":  69,
               "latitude":  -78,
               "type":  "Habitat",
+              "sampleIds":  ["017", "029", "046"],
               "gameid":  "HabitatNode01"
             },
             {
@@ -321,6 +343,7 @@
               "longitude":  86,
               "latitude":  -74,
               "type":  "Ruin",
+              "sampleIds":  ["100", "101", "102", "103"],
               "gameid":  "YorkGrave"
             },
             {
@@ -331,6 +354,7 @@
               "latitude":  -48,
               "type":  "Habitat",
               "flags":  "rhino, fahrt",
+              "sampleIds":  ["016", "018", "027", "039"],
               "gameid":  "HabitatNode02"
             },
             {
@@ -440,6 +464,7 @@
               "longitude":  90,
               "latitude":  6,
               "type":  "SharkBay",
+              "sampleIds":  ["126"],
               "gameid":  "Platform_Omega"
             },
             {
@@ -524,7 +549,7 @@
               "gameid":  "GyrocopyterPlatformC"
             },
             {
-              "name":  "SGS-SE-101-7200",
+              "name":  "SGS-S-94-13021",
               "id":  "52A",
               "description":  "A platform for the Gyrocopter.",
               "longitude":  63,
@@ -575,6 +600,7 @@
               "longitude":  74,
               "latitude":  -74,
               "type":  "Silo",
+              "sampleIds":  ["053"],
               "gameid":  "SiloB"
             },
             {
@@ -584,6 +610,7 @@
               "longitude":  89,
               "latitude":  47,
               "type":  "Silo",
+              "sampleIds":  ["054"],
               "gameid":  "SiloA"
             },
             {
@@ -593,6 +620,7 @@
               "longitude":  53,
               "latitude":  -34,
               "type":  "Lab",
+              "sampleIds":  ["131"],
               "gameid":  "SubmergedLab"
             },
             {
@@ -633,7 +661,108 @@
               "type":  "Portal",
               "gameid":  "Lazarus"
             }
-          ],
+          ,
+            {
+              "name":  "Open-Water Sample 056",
+              "id":  "s056",
+              "description":  "Go directly to the coordinates and scan the small hologram/event object.",
+              "longitude":  26.4,
+              "latitude":  4.9,
+              "type":  "Sample",
+              "sampleIds":  ["056"],
+              "gameid":  "SampleOW056"
+            },
+            {
+              "name":  "Open-Water Sample 057",
+              "id":  "s057",
+              "description":  "Go directly to the coordinates and scan the small hologram/event object.",
+              "longitude":  37.1,
+              "latitude":  6.0,
+              "type":  "Sample",
+              "sampleIds":  ["057"],
+              "gameid":  "SampleOW057"
+            },
+            {
+              "name":  "Open-Water Sample 059",
+              "id":  "s059",
+              "description":  "Go directly to the coordinates; search around the debris.",
+              "longitude":  64.9,
+              "latitude":  -3.9,
+              "type":  "Sample",
+              "sampleIds":  ["059"],
+              "gameid":  "SampleOW059"
+            },
+            {
+              "name":  "Open-Water Sample 060",
+              "id":  "s060",
+              "description":  "Go directly to the coordinates; search around the cargo/net object.",
+              "longitude":  55.3,
+              "latitude":  1.1,
+              "type":  "Sample",
+              "sampleIds":  ["060"],
+              "gameid":  "SampleOW060"
+            },
+            {
+              "name":  "Open-Water Sample 062",
+              "id":  "s062",
+              "description":  "At the water surface; it is very small, so approach slowly and use the drone.",
+              "longitude":  106.7,
+              "latitude":  50.1,
+              "type":  "Sample",
+              "sampleIds":  ["062"],
+              "gameid":  "SampleOW062"
+            },
+            {
+              "name":  "Open-Water Sample 063",
+              "id":  "s063",
+              "description":  "Go directly to the coordinates and scan the object.",
+              "longitude":  14.4,
+              "latitude":  8.4,
+              "type":  "Sample",
+              "sampleIds":  ["063"],
+              "gameid":  "SampleOW063"
+            },
+            {
+              "name":  "Unmarked Spire Sample 584 (Quarantine Stack Amen)",
+              "id":  "s584",
+              "description":  "On an unmarked rocky spire with a catwalk around the top.",
+              "longitude":  154.0,
+              "latitude":  -35.0,
+              "type":  "Sample",
+              "sampleIds":  ["584"],
+              "gameid":  "SampleSpire584"
+            },
+            {
+              "name":  "Unmarked Spire Sample 596 (Quarantine Stack Amen)",
+              "id":  "s596",
+              "description":  "About 10 m underwater; go directly to the exact coordinate.",
+              "longitude":  147.3,
+              "latitude":  -33.9,
+              "type":  "Sample",
+              "sampleIds":  ["596"],
+              "gameid":  "SampleSpire596"
+            },
+            {
+              "name":  "Unmarked Spire Sample 605 (Quarantine Stack Amen)",
+              "id":  "s605",
+              "description":  "Just underwater on a spire east of Amen. Community reports approximately 151,-38; another current listing places it around 152,-37.",
+              "longitude":  151,
+              "latitude":  -38,
+              "type":  "Sample",
+              "sampleIds":  ["605"],
+              "gameid":  "SampleSpire605"
+            },
+            {
+              "name":  "Unmarked Spire Sample 606 (Quarantine Stack Amen and Dawn)",
+              "id":  "s606",
+              "description":  "Just underwater on the taller spire closest to Amen; backside when facing Amen.",
+              "longitude":  150,
+              "latitude":  -42,
+              "type":  "Sample",
+              "sampleIds":  ["606"],
+              "gameid":  "SampleSpire606"
+            }
+],
   "hiddenLocations":  [
               {
                 "name":  "Habitat Node 10-4",
@@ -642,6 +771,7 @@
                 "longitude":  31,
                 "latitude":  -31,
                 "type":  "Habitat",
+                "sampleIds":  ["045"],
                 "gameid":  "HabitatNode10"
               },
               {
@@ -777,6 +907,7 @@
                 "longitude":  9,
                 "latitude":  -37,
                 "type":  "Habitat",
+                "sampleIds":  ["028", "030", "047"],
                 "gameid":  "HabitatNode-38-98"
               },
               {
@@ -786,6 +917,7 @@
                 "longitude":  113,
                 "latitude":  -21,
                 "type":  "RockySpire",
+                "sampleIds":  ["660", "666"],
                 "gameid":  "UnlistedTower",
                 "underwaterLoot":  true
               },
@@ -796,6 +928,7 @@
                 "longitude":  147,
                 "latitude":  -38,
                 "type":  "RockySpire",
+                "sampleIds":  ["575", "591", "702", "703", "704"],
                 "gameid":  "QuarantineStackAmen"
               },
               {
@@ -805,6 +938,7 @@
                 "longitude":  160,
                 "latitude":  -38,
                 "type":  "RockySpire",
+                "sampleIds":  ["547", "568"],
                 "gameid":  "QuarantineStackAurora"
               },
               {
@@ -814,6 +948,7 @@
                 "longitude":  147,
                 "latitude":  -32,
                 "type":  "RockySpire",
+                "sampleIds":  ["559"],
                 "gameid":  "QuarantineStackChorus"
               },
               {
@@ -823,6 +958,7 @@
                 "longitude":  150,
                 "latitude":  -46,
                 "type":  "RockySpire",
+                "sampleIds":  ["589"],
                 "gameid":  "QuarantineStackDawn"
               },
               {
@@ -832,6 +968,7 @@
                 "longitude":  156,
                 "latitude":  -42,
                 "type":  "GyroPlatform",
+                "sampleIds":  ["133"],
                 "gameid":  "ManifestTower"
               },
               {
@@ -841,6 +978,7 @@
                 "longitude":  183,
                 "latitude":  -38,
                 "type":  "StatueSpire",
+                "sampleIds":  ["617", "624", "628"],
                 "gameid":  "Statue_Spire_B"
               },
               {
@@ -850,6 +988,7 @@
                 "longitude":  169,
                 "latitude":  -2,
                 "type":  "StarChild",
+                "sampleIds":  ["676", "683", "687", "694", "701"],
                 "gameid":  "StarChildA"
               },
               {
@@ -859,6 +998,7 @@
                 "longitude":  21,
                 "latitude":  46,
                 "type":  "StatueSpire",
+                "sampleIds":  ["598", "604", "641"],
                 "gameid":  "Statue_Spire_A"
               },
               {
@@ -868,6 +1008,7 @@
                 "longitude":  82,
                 "latitude":  -94,
                 "type":  "StatueSpire",
+                "sampleIds":  ["603", "635", "647"],
                 "gameid":  "Statue_Spire_C"
               },
               {
@@ -888,6 +1029,7 @@
                     "longitude":  167,
                     "latitude":  34,
                     "type":  "SeedVault",
+                    "sampleIds":  ["052"],
                     "gameid":  "SeedVaultB"
                   },
                   {
@@ -897,6 +1039,7 @@
                     "longitude":  60,
                     "latitude":  11,
                     "type":  "SeedVault",
+                    "sampleIds":  ["051"],
                     "gameid":  "SeedReserve_01"
                   },
                   {
@@ -978,6 +1121,7 @@
                     "longitude":  71,
                     "latitude":  -67,
                     "type":  "SeedVault",
+                    "sampleIds":  ["124"],
                     "gameid":  "SeedReserve_11"
                   },
                   {
@@ -1052,6 +1196,7 @@
             "longitude":  55,
             "latitude":  -82,
             "type":  "Cave",
+            "sampleIds":  ["517", "518"],
             "gameid":  "Cave04-55,-82"
           },
           {
@@ -1061,6 +1206,7 @@
             "longitude":  111,
             "latitude":  4,
             "type":  "Cave",
+            "sampleIds":  ["505", "506", "510"],
             "gameid":  "Cave02-110,4"
           },
           {
@@ -1079,6 +1225,7 @@
             "longitude":  50,
             "latitude":  -20,
             "type":  "Cave",
+            "sampleIds":  ["511", "521"],
             "gameid":  "Cave06-49,-20"
           },
           {
@@ -1088,6 +1235,7 @@
             "longitude":  134,
             "latitude":  54,
             "type":  "Cave",
+            "sampleIds":  ["512", "514"],
             "gameid":  "Cave03-134,55"
           },
           {
@@ -1097,6 +1245,7 @@
             "longitude":  9,
             "latitude":  5,
             "type":  "Cave",
+            "sampleIds":  ["502", "504"],
             "gameid":  "Cave01-9,55"
           },
           {
@@ -1109,12 +1258,13 @@
             "gameid":  "notmarkedingame80,4"
           },
           {
-            "name":  "The Forth Chamber",
+            "name":  "The Fourth Chamber",
             "id":  "c9",
             "description":  "The Forth Chamber is a cave. Entrance at 123m depth. Max depth 153m",
             "longitude":  110,
             "latitude":  -33,
             "type":  "Cave",
+            "sampleIds":  ["522", "527", "531", "537"],
             "gameid":  "Cave10"
           }
         ]
