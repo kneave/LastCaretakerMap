@@ -3,6 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import './styles.scss';
 
 import { getMarkerColor } from './settings.js'
+import { setLocateHandler, setSampleStateListener, getSampleState, setSampleState } from './samples.js'
 
 import locationData from './data/locations.json';
 import locationTypes from './data/types.json';
@@ -183,8 +184,10 @@ function buildSampleListHtml(location) {
     const rows = ids.map(id => {
         const s = sampleIndex[id];
         if (!s) return '';
+        const captured = getSampleState(id);
         return `
             <li class="sample-row" data-sample-id="${id}">
+                <button class="sample-row-visit-btn" data-sample-id="${id}" data-captured="${captured}" title="${captured ? 'Captured' : 'Not captured'}">${captured ? '✔' : '☐'}</button>
                 <span class="sample-id">${id}</span>
                 <span class="sample-name">${s.name}</span>
             </li>
@@ -196,6 +199,20 @@ function buildSampleListHtml(location) {
             <ul class="popup-samples-list">${rows}</ul>
         </div>
     `;
+}
+
+// Refresh sample-row visit buttons in any open popup after a state change
+function refreshPopupSampleButtons(sampleId, captured) {
+    const el = markers[selectedMarkerId]?.getElement();
+    if (!el) return;
+    const popupRows = el.querySelectorAll(`.sample-row[data-sample-id="${sampleId}"]`);
+    popupRows.forEach(row => {
+        const btn = row.querySelector('.sample-row-visit-btn');
+        if (!btn) return;
+        btn.dataset.captured = captured;
+        btn.textContent = captured ? '✔' : '☐';
+        btn.title = captured ? 'Captured' : 'Not captured';
+    });
 }
 
 // Small count chip shown in sidebar rows for locations that have samples
@@ -660,6 +677,18 @@ function addMarkersToMap(locations, locationCategory = 'regular') {
                 });
             }
 
+            // Bind per-sample capture buttons inside the popup (two-state toggle)
+            e.popup.getElement().querySelectorAll('.sample-row-visit-btn').forEach(sbtn => {
+                sbtn.addEventListener('click', () => {
+                    const id = sbtn.dataset.sampleId;
+                    const nowCaptured = !getSampleState(id);
+                    setSampleState(id, nowCaptured);
+                    sbtn.dataset.captured = nowCaptured;
+                    sbtn.textContent = nowCaptured ? '✔' : '☐';
+                    sbtn.title = nowCaptured ? 'Captured' : 'Not captured';
+                });
+            });
+
             // Setup notes textarea
             const notesTextarea = e.popup.getElement().querySelector('.location-notes');
             if (notesTextarea) {
@@ -1026,3 +1055,22 @@ if (hashState) {
         }
     }
 }
+
+// Centre the map on the location holding a given sample (used by the samples browser)
+function locateSample(sampleId) {
+    const location = allLocations.find(l => (l.sampleIds || []).includes(sampleId));
+    if (!location) return;
+    const marker = markers[location.id];
+    if (!marker) return;
+    map.setView([-location.latitude, location.longitude], Math.max(map.getZoom(), 2));
+    marker.openPopup();
+    highlightLocation(location.id);
+    highlightMarker(location.id);
+}
+
+setLocateHandler(locateSample);
+
+// Keep open popups in sync when states change from the samples browser
+setSampleStateListener((sampleId) => {
+    refreshPopupSampleButtons(sampleId);
+});

@@ -51,6 +51,7 @@
             <div class="sidebar-header">
                 <h2>Locations</h2>
                 <div style="flex: 1;"></div>
+                <button id="samples-button" class="sidebar-button samples-button" title="Samples">🧪</button>
                 <button id="filter-button" class="sidebar-button filter-button" title="Filter by Type">ᯤ</button>
                 <button id="settings-button" class="sidebar-button settings-button" title="Settings">⚙️</button>
             </div>
@@ -157,6 +158,37 @@
                         <a href="https://github.com/the1killer/lastcaretakermap" target="_blank" rel="noopener noreferrer" class="help-link">📖 Help & Documentation</a>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Samples Popup -->
+        <div id="samples-popup" class="settings-popup samples-popup" role="dialog" aria-modal="true" aria-labelledby="samples-title">
+            <div class="settings-content samples-content">
+                <div class="settings-header">
+                    <h3 id="samples-title">Samples</h3>
+                    <button id="close-samples" class="close-button">✕</button>
+                </div>
+                <div class="samples-progress">
+                    <div class="samples-progress-labels">
+                        <span id="samples-progress-text">0 / 143 captured</span>
+                        <span id="samples-progress-percent">0%</span>
+                    </div>
+                    <div class="samples-progress-track">
+                        <div id="samples-progress-fill" class="samples-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <div class="samples-actions">
+                    <div class="samples-tabs" id="samples-tabs">
+                        <button class="samples-tab active" data-tab="all">All</button>
+                        <button class="samples-tab" data-tab="hologram">Holograms</button>
+                        <button class="samples-tab" data-tab="cave-painting">Paintings</button>
+                        <button class="samples-tab" data-tab="captured">Captured</button>
+                        <button class="samples-tab" data-tab="missing">Missing</button>
+                    </div>
+                    <button id="samples-search-clear" class="clear-search" title="Clear search" style="display: none;">✕</button>
+                    <input type="text" id="samples-search" placeholder="Search samples..." />
+                </div>
+                <div id="samples-list" class="samples-list"></div>
             </div>
         </div>
 

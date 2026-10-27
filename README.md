@@ -14,6 +14,7 @@ For your viewing pleasure: https://the1killer.github.io/LastCaretakerMap/
 - 🗺️ Interactive map with Icons from the game.
 - 📋 Sidebar with location list
 - 🔍 Click locations to zoom and view details
+- 🧪 Samples browser with capture tracking for all 143 samples & cave paintings
 - 📱 Responsive design for mobile and desktop
 - ⚡ Fast development with Vite and HMR
 
@@ -23,6 +24,12 @@ For your viewing pleasure: https://the1killer.github.io/LastCaretakerMap/
 - 🔍 Add search functionality
 - 📋 Enhance location details
 - 🗝️ Add hidden locations
+
+## Acknowledgements
+
+The samples & cave painting locations are based on the community-made
+["Complete Samples List, Holograms, Cave Paintings"](https://steamcommunity.com/app/1783560/discussions/0/581683203528667623/)
+by [SoulKilla](https://steamcommunity.com/id/SoulKilla/) on the game's Steam discussion board.
 
 ## Getting Started
 

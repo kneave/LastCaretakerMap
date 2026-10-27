@@ -258,6 +258,7 @@ clearDataButton.addEventListener('click', () => {
         localStorage.removeItem('show-primary-numbers');
         localStorage.removeItem('show-visit-overlays');
         localStorage.removeItem('show-samples-only');
+        localStorage.removeItem('samples-captured');
         localStorage.removeItem('use-solid-background');
         localStorage.removeItem('background-color');
         localStorage.removeItem('show-cloth-map');
@@ -451,12 +452,14 @@ if (exportDataButton) {
             const allLocations = [...locations, ...hiddenLocations, ...lastListenerLocations, ...caves];
             const dataToExport = {};
 
-            // Export all location-specific data
+            // Export location and sample visit states
             allLocations.forEach(location => {
                 dataToExport[`marker-visible-${location.id}`] = localStorage.getItem(`marker-visible-${location.id}`);
                 dataToExport[`location-visit-${location.id}`] = localStorage.getItem(`location-visit-${location.id}`);
                 dataToExport[`location-notes-${location.id}`] = localStorage.getItem(`location-notes-${location.id}`);
             });
+            // Export captured samples
+            dataToExport['samples-captured'] = localStorage.getItem('samples-captured');
 
             // Export category visibility states
             dataToExport['category-visible-main-locations'] = localStorage.getItem('category-visible-main-locations');
@@ -536,6 +539,8 @@ if (importDataButton && importFileInput) {
                         localStorage.removeItem(`location-visit-${location.id}`);
                         localStorage.removeItem(`location-notes-${location.id}`);
                     });
+                    // Clear sample captured list
+                    localStorage.removeItem('samples-captured');
 
                     Object.keys(defaultMarkerColors).forEach(type => {
                         localStorage.removeItem(`marker-color-${type}`);
